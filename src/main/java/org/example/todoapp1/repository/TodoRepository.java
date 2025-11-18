@@ -1,12 +1,14 @@
 package org.example.todoapp1.repository;
 
 import org.example.todoapp1.dto.TodoDto;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class TodoRepository {
     // storage 라는 이름의 Map( 키 와 값)을 저장
     private final Map<Long, TodoDto> storage = new ConcurrentHashMap<>();
@@ -20,5 +22,9 @@ public class TodoRepository {
 
     public List<TodoDto> findAll() {
         return new ArrayList<>(storage.values());
+    }
+
+    public TodoDto findById(Long id) {
+        return storage.get(id);
     }
 }
